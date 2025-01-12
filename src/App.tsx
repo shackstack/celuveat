@@ -13,15 +13,16 @@ import MyReviewsPage from "./pages/reviews/my";
 import ReviewFormPage from "./pages/reviews/review";
 import ReviewsPage from "./pages/reviews";
 import SearchPage from "./pages/search";
+import Provider from "./Provider";
 
 const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <div>error</div>,
     element: (
-      <div>
+      <Provider>
         <Outlet />
-      </div>
+      </Provider>
     ),
     children: [
       { index: true, element: <MainPage /> },
