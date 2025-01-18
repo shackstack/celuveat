@@ -1,0 +1,12 @@
+export { default as Korean } from "./korean.svg?react";
+export { default as Chinese } from "./chinese.svg?react";
+export { default as Japanese } from "./japanese.svg?react";
+export { default as Western } from "./western.svg?react";
+export { default as FastFood } from "./fast_food.svg?react";
+export { default as MeatDishes } from "./meat_dishes.svg?react";
+export { default as SoupAndStew } from "./soup_and_stew.svg?react";
+export { default as Noodles } from "./noodles.svg?react";
+export { default as SnackFood } from "./snack_food.svg?react";
+export { default as GlobalFood } from "./global_food.svg?react";
+export { default as PubAndBar } from "./pub_and_bar.svg?react";
+export { default as Desserts } from "./desserts.svg?react";
