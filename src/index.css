@@ -11,6 +11,14 @@
   font-family: "Pretendard", sans-serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  font-synthesis: none;
+}
+
+body {
+  position: relative;
+  margin: 0 auto;
+  max-width: 495px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar {
