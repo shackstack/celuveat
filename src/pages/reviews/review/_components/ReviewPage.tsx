@@ -1,19 +1,20 @@
+"use client";
+
 import ReviewCard from "@/components/ReviewCard";
 import { useUserProfileQuery } from "@/hooks/server/members";
 import { useRestaurantReviewsQuery } from "@/hooks/server/reviews";
-import { useSearchParams } from "react-router-dom";
 
-const ReviewsPage = () => {
-  const [searchParams] = useSearchParams();
-  const { data: reviews } = useRestaurantReviewsQuery(
-    Number(searchParams.get("restaurantId")),
-    {}
-  );
+interface ReviewPageProps {
+  restaurantId: number;
+}
+
+function ReviewPage({ restaurantId }: ReviewPageProps) {
+  const { data: reviews } = useRestaurantReviewsQuery(restaurantId, {});
   const { data: myProfile } = useUserProfileQuery();
 
   return (
     <ul className="mt-16 flex flex-col px-20">
-      {reviews.pages.map((page) =>
+      {reviews?.pages.map((page) =>
         page.contents.map((review) => (
           <>
             <ReviewCard
@@ -27,6 +28,6 @@ const ReviewsPage = () => {
       )}
     </ul>
   );
-};
+}
 
-export default ReviewsPage;
+export default ReviewPage;

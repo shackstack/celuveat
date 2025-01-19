@@ -1,5 +1,5 @@
-import { PagedResponse, PageOptions } from '@/@types/util';
-import { api } from '@/utils/api';
+import { PagedResponse, PageOptions } from "@/@types/util";
+import { api } from "@/utils/api";
 
 interface Writer {
   id: number;
@@ -26,6 +26,27 @@ export const getReview = async (reviewId: number): Promise<Review> => {
   return await api.get(`/reviews/${reviewId}`);
 };
 
+// 리뷰 작성
+export const postReview = async (data: {
+  restaurantId: number;
+  content: string;
+  star: 0 | 1 | 2 | 3 | 4 | 5;
+  images: string[];
+}): Promise<void> => {
+  await api.post("/reviews", data);
+};
+
+// 리뷰 수정
+export const updateReview = async (data: {
+  restaurantId: number;
+  content: string;
+  star: 0 | 1 | 2 | 3 | 4 | 5;
+  images: string[];
+  reviewId: number;
+}): Promise<void> => {
+  await api.put(`/reviews/${data.reviewId}`, data);
+};
+
 // 리뷰 삭제
 export const deleteReview = async (reviewId: number): Promise<void> => {
   await api.delete(`/reviews/${reviewId}`);
@@ -44,7 +65,7 @@ export const deleteReviewHelpful = async (reviewId: number): Promise<void> => {
 // 음식점 리뷰 조회
 export const getRestaurantReviews = async (
   restaurantId: number,
-  params: PageOptions = {},
+  params: PageOptions = {}
 ): Promise<PagedResponse<Review>> => {
   return await api.get(`/reviews/restaurants/${restaurantId}`, { params });
 };
