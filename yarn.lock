@@ -1928,6 +1928,13 @@ optionator@^0.9.3:
     type-check "^0.4.0"
     word-wrap "^1.2.5"
 
+overlay-kit@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/overlay-kit/-/overlay-kit-1.5.0.tgz#4f8de70caa4009caaa88a72ad416bd9b0b9229da"
+  integrity sha512-Fcyz4yAlq1cuPytBDWTfKIBorho3iXpwUXPpFA4osq/xI9KicqEA2va3wMDA+YTErEnhbIWUrrnQKH5IFSWeQw==
+  dependencies:
+    use-sync-external-store "^1.4.0"
+
 p-limit@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-3.1.0.tgz#e1daccbe78d0d1388ca18c64fea38e3e57e3706b"
@@ -2451,6 +2458,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-sync-external-store@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.4.0.tgz#adbc795d8eeb47029963016cefdf89dc799fcebc"
+  integrity sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==
 
 util-deprecate@^1.0.2:
   version "1.0.2"
