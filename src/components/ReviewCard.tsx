@@ -32,9 +32,13 @@ function ReviewCard({ review, isMyReview }: ReviewCardProps) {
       };
 
       const handleDeleteReview = async () => {
-        await mutateDeleteReview(review.id);
-        close();
-        showToast("리뷰가 삭제되었습니다.");
+        await mutateDeleteReview(review.id, {
+          onSuccess: () => {
+            close();
+            showToast("리뷰가 삭제되었습니다.");
+            window.location.reload();
+          },
+        });
       };
 
       return (

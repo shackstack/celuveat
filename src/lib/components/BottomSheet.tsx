@@ -32,11 +32,11 @@ const BottomSheet = ({
       <>
         <div
           css={css({
-            position: "absolute",
+            position: "fixed",
             left: 0,
             top: 0,
             zIndex: 101,
-            height: "100%",
+            height: "100vh",
             width: "100%",
             animation: "fade-in 0.3s ease-in-out",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -79,6 +79,7 @@ const BottomSheet = ({
           <div
             css={css({
               marginTop: "16px",
+              backgroundColor: "white",
             })}
           >
             {title && (
