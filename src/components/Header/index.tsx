@@ -5,7 +5,7 @@ function Header({ title, withBack }: { title: string; withBack?: boolean }) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex h-[58px] w-full items-center justify-center border-b-[1px] border-b-[#Divider]">
+    <div className="relative flex flex-none h-[58px] w-full items-center justify-center border-b-[1px] border-b-[#00000014]">
       {withBack && (
         <IconArrowLeft
           className="top-18 absolute left-20"

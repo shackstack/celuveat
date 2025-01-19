@@ -9,7 +9,7 @@ const CelebDetailPage = () => {
   return (
     <>
       <Header title="맛집 추천 리스트" withBack />
-      <main className="px-20 pt-16 max-h-[100dvh] flex flex-col">
+      <main className="px-20 pt-16 max-h-[calc(100dvh_-_58px)] flex flex-col">
         <CelebIntroductionSection
           celebrityId={Number(searchParams.get("id"))}
         />
