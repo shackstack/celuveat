@@ -19,8 +19,7 @@ function RepresentativeRegionsSection() {
             <img
               src={region.imageUrl}
               alt={region.name}
-              sizes="100%"
-              className="object-cover w-full"
+              className="object-cover absolute w-full h-full"
             />
             <div className="absolute h-full w-full bg-gray-900 opacity-50" />
             <span className="z-10 text-white body-13-rg">{region.name}</span>
