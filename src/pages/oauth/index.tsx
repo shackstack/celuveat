@@ -1,11 +1,10 @@
 import { api } from "@/utils/api";
 import { useEffect } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const OauthPage = () => {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     console.log({ pathname, searchParams });
@@ -15,14 +14,9 @@ const OauthPage = () => {
       );
     };
 
-    try {
-      fetch();
-      navigate("/");
-    } catch (e) {
-      console.log(e);
-      alert("로그인에 실패했습니다.");
-      navigate("/");
-    }
+    fetch().then(() => {
+      window.location.href = "/";
+    });
   }, []);
 
   return (
