@@ -27,7 +27,7 @@ function BottomNavbar() {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_SERVER_BASE_URL}/social-login/url/${socialLoginType}`
     );
-    navigate(await response.text());
+    window.location.href = await response.text();
   };
 
   const openLoginBottomSheet = () => {

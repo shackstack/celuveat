@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/oauth",
+        path: "/oauth/:socialLoginType",
         element: <OauthPage />,
       },
       {
