@@ -28,7 +28,7 @@ export const getInterestedCelebrities = async (): Promise<
 
 // 필터용 셀럽 조회
 export const getCelebritiesInRestaurants = async (
-  params: FilterOption & (CoordinateOption | {})
+  params: FilterOption & (CoordinateOption | {}) & { celebrityId?: number }
 ): Promise<Pick<Celebrity, "id" | "name" | "profileImageUrl">[]> => {
   return await api.get(`/celebrities/in/restaurants/condition`, { params });
 };

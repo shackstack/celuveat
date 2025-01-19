@@ -39,6 +39,11 @@ export const useCelebritiesInRestaurantsQuery = (
   params: Parameters<typeof getCelebritiesInRestaurants>[0]
 ) =>
   useSuspenseQuery({
-    queryKey: ["getCelebritiesInRestaurants", params],
+    queryKey: [
+      "getCelebritiesInRestaurants",
+      params.celebrityId,
+      params.category,
+      params.region,
+    ],
     queryFn: () => getCelebritiesInRestaurants(params),
   });
