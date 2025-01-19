@@ -1,7 +1,19 @@
 import useScrollLock from "@/hooks/useScrollLock";
-import Image from "@/lib/components/Image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
+import onboarding1 from "../_assets/onboarding/onboarding_1.webp";
+import onboarding2 from "../_assets/onboarding/onboarding_2.webp";
+import onboarding3 from "../_assets/onboarding/onboarding_3.webp";
+import onboarding4 from "../_assets/onboarding/onboarding_4.webp";
+import onboarding5 from "../_assets/onboarding/onboarding_5.webp";
+
+const ONBOARDING_IMAGES = [
+  onboarding1,
+  onboarding2,
+  onboarding3,
+  onboarding4,
+  onboarding5,
+];
 
 const variants = {
   enter: (direction: number) => {
@@ -83,39 +95,22 @@ function OnBoarding() {
                 }
               }}
             >
-              <Image
-                src={`/onboarding/onboarding_${page + 1}.webp`}
+              <img
+                className="w-[311px]"
+                src={ONBOARDING_IMAGES[page]}
                 alt="onboarding1"
-                width={311}
-                height={479}
                 onDragStart={(e) => {
                   e.preventDefault();
                 }}
               />
               <button
                 type="button"
-                className="absolute right-16 top-16"
+                className="absolute right-16 top-16 w-24 h-24"
                 aria-label="123"
                 onClick={() => {
                   setIsOpen(false);
                 }}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19.5 4.5L4.5 19.5M4.5 4.5L19.5 19.5"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="square"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+              />
             </motion.div>
           </AnimatePresence>
           <div className="absolute bottom-[calc(50%_-_240px)] z-[1000] flex h-20 w-full items-center justify-center gap-8">
