@@ -11,18 +11,36 @@ import {
   deleteReviewHelpful,
   getRestaurantReviews,
   getReviewCount,
+  postReview,
+  updateReview,
+  getMyReviews,
 } from "@/remotes/reviews";
 
 // 리뷰 조회
-export const useReviewQuery = (reviewId: number) =>
+export const useReviewQuery = (reviewId: string | null) =>
   useSuspenseQuery({
     queryKey: ["getReview", reviewId],
-    queryFn: () => getReview(reviewId),
+    queryFn: () => (reviewId ? getReview(Number(reviewId)) : null),
+  });
+
+// 내 리뷰 조회
+export const useMyReviewsQuery = () =>
+  useSuspenseQuery({
+    queryKey: ["getMyReviews"],
+    queryFn: () => getMyReviews(),
   });
 
 // 리뷰 삭제
 export const useDeleteReviewMutation = () =>
   useMutation({ mutationFn: deleteReview });
+
+// 리뷰 작성
+export const usePostReviewMutation = () =>
+  useMutation({ mutationFn: postReview });
+
+// 리뷰 수정
+export const useUpdateReviewMutation = () =>
+  useMutation({ mutationFn: updateReview });
 
 // 리뷰 좋아요
 export const usePostReviewHelpfulMutation = () =>

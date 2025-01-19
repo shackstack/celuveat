@@ -1,5 +1,5 @@
 import { Restaurant } from "@/@types";
-import { useLogoutMutation } from "@/hooks/server/members";
+import { useUserProfileQuery } from "@/hooks/server/members";
 
 import useToast from "@/hooks/useToast";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ interface ReviewAddButtonProps {
 function ReviewAddButton({ restaurantId, innerText }: ReviewAddButtonProps) {
   const navigate = useNavigate();
   const showToast = useToast();
-  const { data } = useLogoutMutation();
+  const { data } = useUserProfileQuery();
 
   const handleClick = () => {
     if (data) {

@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             element: <MyReviewsPage />,
           },
           {
-            path: "reviews/review/:id",
+            path: "/reviews/review",
             element: <ReviewFormPage />,
           },
         ],

@@ -25,6 +25,7 @@ import RestaurantAddInterestButton from "./_components/RestaurantAddInterestButt
 import RestaurantDetailPageMap from "./_components/RestaurantDetailPageMap";
 import ReviewAddButton from "./_components/ReviewAddButton";
 import Header from "@/components/Header";
+import { useUserProfileQuery } from "@/hooks/server/members";
 
 function RestaurantDetailPage() {
   const [searchParams] = useSearchParams();
@@ -38,6 +39,7 @@ function RestaurantDetailPage() {
     size: 3,
   });
   const { data: reviewCount } = useReviewCountQuery(Number(restaurantId));
+  const { data: user } = useUserProfileQuery();
 
   return (
     <div>
@@ -184,7 +186,10 @@ function RestaurantDetailPage() {
               {reviews?.pages.map((page) =>
                 page.contents.map((review) => (
                   <Fragment key={review.id}>
-                    <ReviewCard review={review} isMyReview={false} />
+                    <ReviewCard
+                      review={review}
+                      isMyReview={user?.id === review.writer.id}
+                    />
                     <hr className="my-16 h-1 w-full bg-gray-100" />
                   </Fragment>
                 ))
