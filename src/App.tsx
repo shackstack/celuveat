@@ -15,6 +15,7 @@ import ReviewsPage from "./pages/reviews";
 import SearchPage from "./pages/search";
 import Provider from "./Provider";
 import RestaurantDetailPage from "./pages/restaurants/restaurant";
+import BottomNavbar from "./components/BottomNavbar";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     element: (
       <Provider>
         <Outlet />
+        <BottomNavbar />
       </Provider>
     ),
     children: [
@@ -55,7 +57,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/oauth",
+        path: "/oauth/:socialLoginType",
         element: <OauthPage />,
       },
       {

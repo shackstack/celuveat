@@ -2,8 +2,15 @@ import { UserProfile } from "@/@types";
 import { api } from "@/utils/api";
 
 // 유저 프로필 조회
-export const getUserProfile = async (): Promise<UserProfile> => {
-  return await api.get("/members/profile");
+export const getUserProfile = async (): Promise<UserProfile | null> => {
+  try {
+    return await api.get("/members/profile");
+  } catch (e) {
+    if (e.status === 401) {
+      return null;
+    }
+    throw e;
+  }
 };
 
 // 유저 프로필 수정
