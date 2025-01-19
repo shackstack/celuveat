@@ -13,6 +13,7 @@ import {
   getReviewCount,
   postReview,
   updateReview,
+  getMyReviews,
 } from "@/remotes/reviews";
 
 // 리뷰 조회
@@ -20,6 +21,13 @@ export const useReviewQuery = (reviewId: string | null) =>
   useSuspenseQuery({
     queryKey: ["getReview", reviewId],
     queryFn: () => (reviewId ? getReview(Number(reviewId)) : null),
+  });
+
+// 내 리뷰 조회
+export const useMyReviewsQuery = () =>
+  useSuspenseQuery({
+    queryKey: ["getMyReviews"],
+    queryFn: () => getMyReviews(),
   });
 
 // 리뷰 삭제

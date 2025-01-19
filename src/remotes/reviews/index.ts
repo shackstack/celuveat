@@ -26,6 +26,11 @@ export const getReview = async (reviewId: number): Promise<Review> => {
   return await api.get(`/reviews/${reviewId}`);
 };
 
+// 리뷰 조회
+export const getMyReviews = async (): Promise<Review[]> => {
+  return await api.get("/reviews/my");
+};
+
 // 리뷰 작성
 export const postReview = async (data: {
   restaurantId: number;
