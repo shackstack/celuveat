@@ -29,6 +29,10 @@ export const useRestaurantsQuery = (
   useInfiniteQuery({
     queryKey: [
       "getRestaurants",
+      params.highLatitude,
+      params.lowLatitude,
+      params.highLongitude,
+      params.lowLongitude,
       params.category,
       params.celebrityId,
       params.sort,
@@ -46,7 +50,16 @@ export const useRestaurantsCountQuery = (
   params: Parameters<typeof getRestaurantsCount>[0]
 ) =>
   useSuspenseQuery({
-    queryKey: ["getRestaurantsCount", params],
+    queryKey: [
+      "getRestaurantsCount",
+      params.highLatitude,
+      params.lowLatitude,
+      params.highLongitude,
+      params.lowLongitude,
+      params.category,
+      params.celebrityId,
+      params.region,
+    ],
     queryFn: () => getRestaurantsCount(params),
   });
 

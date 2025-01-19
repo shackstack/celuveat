@@ -1,11 +1,14 @@
 import { useCelebritiesInRestaurantsQuery } from "@/hooks/server/celebs";
 import { useSearchParams } from "react-router-dom";
 import Tab from "./Tab";
+import useCoordinate from "@/hooks/useCoordinate";
 
 function CelebrityFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { coordinate } = useCoordinate();
   const { data: celebrities } = useCelebritiesInRestaurantsQuery({
     category: searchParams.get("category") ?? undefined,
+    ...coordinate,
   });
 
   const onClickTab = (id: number | "전체") => {

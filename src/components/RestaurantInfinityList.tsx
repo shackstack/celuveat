@@ -9,7 +9,7 @@ import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { useSearchParams } from "react-router-dom";
 import Spacing from "@/lib/components/Spacing";
 
-function RestaurantSection() {
+function RestaurantInfinityList() {
   const [sortValue, setSortValue] = useState("like");
   const [searchParams] = useSearchParams();
   const { data: restaurantsCount } = useRestaurantsCountQuery({
@@ -65,4 +65,4 @@ function RestaurantSection() {
   );
 }
 
-export default RestaurantSection;
+export default RestaurantInfinityList;

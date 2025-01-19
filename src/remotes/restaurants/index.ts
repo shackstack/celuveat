@@ -1,19 +1,26 @@
-import { Celebrity, Restaurant } from '@/@types';
-import { CoordinateOption, FilterOption, PagedResponse, PaginationOption } from '@/@types/util';
-import { api } from '@/utils/api';
+import { Celebrity, Restaurant } from "@/@types";
+import {
+  CoordinateOption,
+  FilterOption,
+  PagedResponse,
+  PaginationOption,
+} from "@/@types/util";
+import { api } from "@/utils/api";
 
 // 음식점 조건 조회
 export const getRestaurants = async (
-  params: FilterOption & PaginationOption & (CoordinateOption | {}) & { celebrityId?: number },
+  params: FilterOption &
+    PaginationOption &
+    CoordinateOption & { celebrityId?: number }
 ): Promise<PagedResponse<Restaurant>> => {
-  return await api.get('/restaurants', { params });
+  return await api.get("/restaurants", { params });
 };
 
 // 음식점 갯수 조회
 export const getRestaurantsCount = async (
-  params: FilterOption & (CoordinateOption | {}) & { celebrityId?: number },
+  params: FilterOption & CoordinateOption & { celebrityId?: number }
 ): Promise<number> => {
-  return await api.get('/restaurants/count', { params });
+  return await api.get("/restaurants/count", { params });
 };
 
 // 인기 셀럽 조회
@@ -23,26 +30,32 @@ export const getCelebritiesBest = async (): Promise<
     restaurants: Restaurant[];
   }[]
 > => {
-  return await api.get('/celebrities/best');
+  return await api.get("/celebrities/best");
 };
 
 // 셀럽 추천 음식점 조회
-export const getRecommendedRestaurantsByCelebrities = async (): Promise<Restaurant[]> => {
-  return await api.get('/restaurants/celebrity/recommend');
+export const getRecommendedRestaurantsByCelebrities = async (): Promise<
+  Restaurant[]
+> => {
+  return await api.get("/restaurants/celebrity/recommend");
 };
 
 // 관심 음식점 조회
-export const getInterestedRestaurants = async (): Promise<PagedResponse<Restaurant>> => {
-  return await api.get('/restaurants/interested');
+export const getInterestedRestaurants = async (): Promise<
+  PagedResponse<Restaurant>
+> => {
+  return await api.get("/restaurants/interested");
 };
 
 // 관심 음식점 갯수 조회
 export const getInterestedRestaurantsCount = async (): Promise<number> => {
-  return await api.get('/restaurants/interested/count');
+  return await api.get("/restaurants/interested/count");
 };
 
 // 셀럽이 다녀간 음식점 갯수 조회
-export const getCelebrityRestaurantsCount = async (celebrityId: number): Promise<number> => {
+export const getCelebrityRestaurantsCount = async (
+  celebrityId: number
+): Promise<number> => {
   return await api.get(`/restaurants/celebrity/${celebrityId}/count`);
 };
 
@@ -57,13 +70,15 @@ export const deleteInterestedRestaurant = async (restaurantId: number) => {
 };
 
 // 음식점 조회
-export const getRestaurant = async (restaurantId: number): Promise<Restaurant> => {
+export const getRestaurant = async (
+  restaurantId: number
+): Promise<Restaurant> => {
   return await api.get(`/restaurants/${restaurantId}`);
 };
 
 // 음식점이 나온 영상 조회
 export const getRestaurantVideos = async (
-  restaurantId: number,
+  restaurantId: number
 ): Promise<
   {
     id: number;
@@ -75,16 +90,20 @@ export const getRestaurantVideos = async (
 };
 
 // 주변 음식점 조회
-export const getRestaurantsNearby = async (restaurantId: number): Promise<Restaurant[]> => {
+export const getRestaurantsNearby = async (
+  restaurantId: number
+): Promise<Restaurant[]> => {
   return await api.get(`/restaurants/nearby/${restaurantId}`);
 };
 
 // 주간 업데이트된 음식점 조회
-export const getWeeklyRestaurants = async (): Promise<PagedResponse<Restaurant>> => {
-  return await api.get('/restaurants/weekly');
+export const getWeeklyRestaurants = async (): Promise<
+  PagedResponse<Restaurant>
+> => {
+  return await api.get("/restaurants/weekly");
 };
 
 // 주간 음식점 갯수 조회
 export const getWeeklyRestaurantsCount = async (): Promise<number> => {
-  return await api.get('/restaurants/weekly/count');
+  return await api.get("/restaurants/weekly/count");
 };
