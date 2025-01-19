@@ -1,3 +1,4 @@
+import RestaurantImage from "@/components/RestaurantImage";
 import RestaurantLikeButton from "@/components/RestaurantLikeButton";
 import { useCelebritiesBestQuery } from "@/hooks/server/restaurants";
 import IconArrowRight from "@/lib/components/@icon/IconArrowRight";
@@ -25,7 +26,7 @@ function CelebBestSection() {
               className="relative flex flex-none flex-col items-center gap-[8px]"
             >
               <Image
-                className={`h-[64px] rounded-full object-cover ${sequence === index && "outline outline-[3px] outline-main-500"}`}
+                className={`rounded-full ${sequence === index && "outline outline-[3px] outline-main-500"}`}
                 src={profileImageUrl}
                 alt={name}
                 width={64}
@@ -61,14 +62,12 @@ function CelebBestSection() {
                     to={`/restaurants/restaurant?restaurantId=${id}`}
                     className="relative aspect-square overflow-hidden rounded-[8px] bg-gray-200"
                   >
-                    {images[0]?.url && (
-                      <img
-                        alt={name}
-                        src={images[0].url}
-                        sizes="100%"
-                        className="w-full h-full object-cover"
-                      />
-                    )}
+                    <RestaurantImage
+                      alt={name}
+                      src={images[0]?.url}
+                      sizes="100%"
+                      className="w-full h-full object-cover"
+                    />
                   </Link>
                   <div className="mt-10 flex flex-col gap-3 px-2">
                     <span className="body-14-md">{name}</span>
