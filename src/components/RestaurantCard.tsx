@@ -3,8 +3,8 @@ import { Restaurant } from "@/@types";
 import RestaurantLikeButton from "@/components/RestaurantLikeButton";
 import { colors } from "@/lib/colors";
 import IconThumbsUpFilled from "@/lib/components/@icon/IconThumbsUpFilled";
-import Image from "@/lib/components/Image";
 import { Link } from "react-router-dom";
+import RestaurantImage from "./RestaurantImage";
 
 function RestaurantCard({
   id,
@@ -18,17 +18,14 @@ function RestaurantCard({
   return (
     <div className="relative flex w-[128px] flex-none flex-col">
       <Link to={`/restaurants/restaurant?restaurantId=${id}`}>
-        {images[0]?.url ? (
-          <Image
-            src={images[0].url}
-            width={128}
-            height={128}
-            alt={name}
-            className="aspect-square rounded-[8px] bg-gray-200 object-cover"
-          />
-        ) : (
-          <div className="h-[128px] w-[128px] rounded-[8px] bg-gray-200" />
-        )}
+        <RestaurantImage
+          src={images[0]?.url}
+          width={128}
+          height={128}
+          alt={name}
+          className="aspect-square rounded-[8px] bg-gray-200 object-cover"
+        />
+
         <div className="mt-12 overflow-x-hidden text-ellipsis whitespace-nowrap">
           <span className="title-15-md">{name}</span>
           <span className="ml-4 caption-12-rg">{category}</span>
