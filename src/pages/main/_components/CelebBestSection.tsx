@@ -46,7 +46,7 @@ function CelebBestSection() {
           </p>
           <Link
             className="flex items-center"
-            to={`/celebs/${bestCelebrities && bestCelebrities[sequence].celebrity.id}`}
+            to={`/celebs/celeb?id=${bestCelebrities && bestCelebrities[sequence].celebrity.id}`}
           >
             <span className="text-gray-400 body-13-rg">더보기</span>
             <IconArrowRight width={14} height={14} />
