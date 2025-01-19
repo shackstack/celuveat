@@ -8,6 +8,9 @@ function CelebrityFilter() {
   const { coordinate } = useCoordinate();
   const { data: celebrities } = useCelebritiesInRestaurantsQuery({
     category: searchParams.get("category") ?? undefined,
+    celebrityId: searchParams.get("celebrityId")
+      ? Number(searchParams.get("celebrityId"))
+      : undefined,
     ...coordinate,
   });
 
