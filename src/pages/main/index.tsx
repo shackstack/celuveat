@@ -9,6 +9,7 @@ import CelebritiesRecommendedRestaurantsInformation from "./_components/Celebrit
 import RestaurantRecommendedSection from "./_components/RestaurantRecommendedSection";
 import RepresentativeRegionsSection from "./_components/RepresentativeRegionsSection";
 import { colors } from "@/lib/colors";
+import OnBoarding from "./_components/OnBoarding";
 
 const FOOD_CATEGORY = [
   { name: "한식", icon: <Icon.Korean /> },
@@ -28,7 +29,7 @@ const FOOD_CATEGORY = [
 const MainPage = () => {
   return (
     <>
-      {/* <OnBoarding /> */}
+      <OnBoarding />
       <main>
         <section className="flex items-center gap-16 px-20 pt-20">
           <Link
