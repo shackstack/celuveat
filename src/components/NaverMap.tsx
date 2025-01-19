@@ -33,8 +33,7 @@ function NaverMap({ cn }: NaverMapProps) {
           : 127.0399848
       ),
     });
-
-    const handleDrag = () => {
+    const onChange = () => {
       const bounds = newMap.getBounds();
       const zoom = newMap.getZoom();
       const center = newMap.getCenter();
@@ -48,14 +47,14 @@ function NaverMap({ cn }: NaverMapProps) {
       searchParams.set("zoom", zoom.toString());
       searchParams.set("centerX", center.x.toString());
       searchParams.set("centerY", center.y.toString());
-      setSearchParams(searchParams);
+      setSearchParams(searchParams, { replace: true });
     };
+    onChange();
 
-    handleDrag();
     const moveEventListener = naver.maps.Event.addListener(
       newMap,
       "idle",
-      handleDrag
+      onChange
     );
 
     setMap(newMap);

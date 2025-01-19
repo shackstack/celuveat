@@ -24,6 +24,7 @@ import { formatToTenThousandUnits } from "@/lib/utils/formatToTenThousandUnits";
 import RestaurantAddInterestButton from "./_components/RestaurantAddInterestButton";
 import RestaurantDetailPageMap from "./_components/RestaurantDetailPageMap";
 import ReviewAddButton from "./_components/ReviewAddButton";
+import Header from "@/components/Header";
 
 function RestaurantDetailPage() {
   const [searchParams] = useSearchParams();
@@ -40,6 +41,7 @@ function RestaurantDetailPage() {
 
   return (
     <div>
+      <Header title="맛집 정보" withBack />
       <RestaurantDetailPageMap {...restaurant} />
       <main className="bg-white p-20">
         <div className="flex justify-between">

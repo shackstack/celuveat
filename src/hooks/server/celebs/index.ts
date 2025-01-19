@@ -1,6 +1,5 @@
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 
-import { CoordinateOption, FilterOption } from "@/@types/util";
 import {
   getCelebrityInfo,
   postInterestedCelebrity,
@@ -37,9 +36,9 @@ export const useInterestedCelebritiesQuery = () =>
 
 // 필터용 셀럽 조회
 export const useCelebritiesInRestaurantsQuery = (
-  params: FilterOption & (CoordinateOption | {})
+  params: Parameters<typeof getCelebritiesInRestaurants>[0]
 ) =>
   useSuspenseQuery({
-    queryKey: ["getCelebritiesInRestaurants"],
+    queryKey: ["getCelebritiesInRestaurants", params],
     queryFn: () => getCelebritiesInRestaurants(params),
   });
