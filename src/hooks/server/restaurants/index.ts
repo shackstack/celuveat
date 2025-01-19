@@ -35,7 +35,7 @@ export const useRestaurantsQuery = (
       params.region,
     ],
     queryFn: ({ pageParam }) =>
-      getRestaurants({ page: pageParam, size: 5, ...params }),
+      getRestaurants({ page: pageParam, size: 10, ...params }),
     getNextPageParam: (lastPage, _, lastPageNumber) =>
       lastPage.hasNext ? lastPageNumber + 1 : undefined,
     initialPageParam: 0,
