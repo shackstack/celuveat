@@ -17,7 +17,7 @@ function RestaurantCard({
 }: Restaurant) {
   return (
     <div className="relative flex w-[128px] flex-none flex-col">
-      <Link to={`/restaurants/restaurant/${id}`}>
+      <Link to={`/restaurants/restaurant?restaurantId=${id}`}>
         {images[0]?.url ? (
           <Image
             src={images[0].url}

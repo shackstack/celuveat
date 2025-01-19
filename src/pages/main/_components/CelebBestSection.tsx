@@ -58,7 +58,7 @@ function CelebBestSection() {
               ({ id, name, images, category, roadAddress, liked }) => (
                 <div className="relative flex w-[106px] flex-col" key={id}>
                   <Link
-                    to={`/restaurants/restaurant/${id}`}
+                    to={`/restaurants/restaurant?restaurantId=${id}`}
                     className="relative aspect-square overflow-hidden rounded-[8px] bg-gray-200"
                   >
                     {images[0]?.url && (

@@ -13,7 +13,10 @@ function RestaurantCardRow({
 }: Restaurant) {
   return (
     <div className="relative">
-      <Link to={`/restaurants/restaurant/${id}`} className="flex gap-12">
+      <Link
+        to={`/restaurants/restaurant?restaurantId=${id}`}
+        className="flex gap-12"
+      >
         <div className="relative h-[112px] w-[112px] overflow-hidden rounded-[8px] bg-gray-200">
           {images[0]?.url && (
             <img

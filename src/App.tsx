@@ -14,6 +14,7 @@ import ReviewFormPage from "./pages/reviews/review";
 import ReviewsPage from "./pages/reviews";
 import SearchPage from "./pages/search";
 import Provider from "./Provider";
+import RestaurantDetailPage from "./pages/restaurants/restaurant";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
           {
             path: "/restaurants/weekly",
             element: <WeeklyRestaurantsPage />,
+          },
+          {
+            path: "/restaurants/restaurant",
+            element: <RestaurantDetailPage />,
           },
         ],
       },
