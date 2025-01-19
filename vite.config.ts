@@ -12,4 +12,7 @@ export default defineConfig({
     svgr(),
     tsconfigPaths(),
   ],
+  server: {
+    port: 3000,
+  },
 });
