@@ -7,7 +7,6 @@ React, TypeScript, Vite, TailwindCSS, React Query 등 최신 프론트엔드 스
   <img width="1600" alt="Thumbnail" src="https://github.com/user-attachments/assets/d31f152b-0e78-4e33-bbb9-f51ae3e43dd3">
 </a>
 
-
 ## 주요 기능
 
 - **메인 페이지**
@@ -73,6 +72,7 @@ src/
 - **Framer Motion** (애니메이션)
 - **Lottie** (로딩 애니메이션)
 - **Axios** (API 통신)
+- **AWS SDK for JavaScript v3** (`@aws-sdk/client-s3`, `@aws-sdk/s3-request-presigner`) - S3 연동
 - **ESLint, Prettier** (코드 품질 관리)
 - **SVGR** (SVG 컴포넌트화)
 
@@ -118,10 +118,7 @@ yarn preview
 
 ## 기타
 
+- **AWS S3 연동**을 통한 파일 업로드/다운로드 지원
 - **Vite**의 빠른 번들링과 HMR 지원
 - **TypeScript** 기반의 타입 안정성
 - **SVG 아이콘**을 컴포넌트로 활용
-
----
-
-원하는 추가 정보나 배포/환경설정/컨트리뷰션 가이드가 필요하다면 말씀해 주세요!
