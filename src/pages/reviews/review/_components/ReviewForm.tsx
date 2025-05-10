@@ -11,6 +11,9 @@ import {
   usePostReviewMutation,
   useUpdateReviewMutation,
 } from "@/hooks/server/reviews";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { client } from "@/utils/s3Client";
 
 const RATING = [1, 2, 3, 4, 5] as const;
 
@@ -47,14 +50,17 @@ function ReviewForm({ restaurantId, review }: ReviewFormProps) {
 
     const map = Array.from(files).map((file) => {
       const getUploadedFileName = async () => {
-        const response = await fetch(
-          `/api/presigned-url?file=reviews/${file.name}`
-        );
-        const { presignedUrl } = await response.json();
+        const command = new PutObjectCommand({
+          Bucket: import.meta.env.VITE_S3_BUCKET_NAME,
+          Key: `reviews/${file.name}`,
+        });
+        const presignedUrl = await getSignedUrl(client, command, {
+          expiresIn: 60,
+        });
         const { ok } = await fetch(presignedUrl, { body: file, method: "PUT" });
 
         if (!ok) throw new Error("Failed to upload image");
-        return `${import.meta.env.VITE_PUBLIC_CLOUDFRONT_DOMAIN}/${file.name}`;
+        return `${import.meta.env.VITE_CLOUDFRONT_DOMAIN}/reviews/${file.name}`;
       };
 
       return getUploadedFileName();
