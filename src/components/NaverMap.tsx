@@ -78,12 +78,14 @@ function NaverMap({ cn }: NaverMapProps) {
     restaurants.pages[0].contents.forEach(
       ({ id, latitude, longitude, visitedCelebrities }) => {
         if (markersRef.current.has(id)) return;
+
         const newMarker = new naver.maps.Marker({
           position: new naver.maps.LatLng(latitude, longitude),
           map: mapRef.current!,
           icon: {
             content: `<img
               src="${visitedCelebrities[0].profileImageUrl}"
+              onerror="this.onerror=null;this.src='https://placehold.co/20x20/DEDEDE/FFFFFF/png';"
               class="relative bottom-[19px] right-[19px] h-[38px] min-h-[38px] w-[38px] min-w-[38px] flex-none rounded-full border-[3px] border-white object-cover"
             />`,
           },
