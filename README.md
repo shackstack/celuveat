@@ -1,9 +1,12 @@
-# 셀럽잇(Celuveat)
+# 셀럽잇(Celuveat Renewal)
 
-**Celuveat**는 셀럽들이 추천하는 맛집 정보를 제공하는 웹 애플리케이션입니다.  
+**셀럽잇**은 셀럽들이 추천하는 맛집 정보를 제공하는 웹 애플리케이션입니다.  
 React, TypeScript, Vite, TailwindCSS, React Query 등 최신 프론트엔드 스택을 활용하여 빠르고 쾌적한 사용자 경험을 제공합니다.
 
----
+<a href="https://celuveat.com/">
+  <img width="1600" alt="Thumbnail" src="https://github.com/user-attachments/assets/d31f152b-0e78-4e33-bbb9-f51ae3e43dd3">
+</a>
+
 
 ## 주요 기능
 
