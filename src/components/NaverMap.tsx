@@ -9,30 +9,42 @@ interface NaverMapProps {
 
 function NaverMap({ cn }: NaverMapProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<naver.maps.Map | null>(null);
-  const [markers, setMarkers] = useState(new Map());
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { data: restaurants } = useRestaurantsQuery({
-    lowLatitude: searchParams.get("lowLatitude")!,
-    lowLongitude: searchParams.get("lowLongitude")!,
-    highLatitude: searchParams.get("highLatitude")!,
-    highLongitude: searchParams.get("highLongitude")!,
+  const mapRef = useRef<naver.maps.Map | null>(null);
+  const markersRef = useRef<Map<number, naver.maps.Marker>>(new Map());
+  const [searchParams] = useSearchParams();
+
+  // 쿼리 파라미터에서 초기값 추출
+  const getInitialParams = () => ({
+    lowLatitude: searchParams.get("lowLatitude") || "",
+    lowLongitude: searchParams.get("lowLongitude") || "",
+    highLatitude: searchParams.get("highLatitude") || "",
+    highLongitude: searchParams.get("highLongitude") || "",
+    zoom: searchParams.get("zoom") || "16",
+    centerX: searchParams.get("centerX") || "127.0399848",
+    centerY: searchParams.get("centerY") || "37.5248599",
   });
 
+  const [params, setParams] = useState(getInitialParams());
+
+  const { data: restaurants } = useRestaurantsQuery({
+    lowLatitude: params.lowLatitude,
+    lowLongitude: params.lowLongitude,
+    highLatitude: params.highLatitude,
+    highLongitude: params.highLongitude,
+  });
+
+  // 지도 객체 최초 1회만 생성
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || mapRef.current) return;
 
     const newMap = new naver.maps.Map(ref.current, {
-      zoom: searchParams.get("zoom") ? Number(searchParams.get("zoom")) : 16,
+      zoom: Number(params.zoom),
       center: new naver.maps.LatLng(
-        searchParams.get("centerY")
-          ? Number(searchParams.get("centerY"))
-          : 37.5248599,
-        searchParams.get("centerX")
-          ? Number(searchParams.get("centerX"))
-          : 127.0399848
+        Number(params.centerY),
+        Number(params.centerX)
       ),
     });
+
     const onChange = () => {
       const bounds = newMap.getBounds();
       const zoom = newMap.getZoom();
@@ -40,52 +52,46 @@ function NaverMap({ cn }: NaverMapProps) {
 
       if (!bounds) return;
 
-      searchParams.set("lowLatitude", bounds.getMin().y.toString());
-      searchParams.set("lowLongitude", bounds.getMin().x.toString());
-      searchParams.set("highLatitude", bounds.getMax().y.toString());
-      searchParams.set("highLongitude", bounds.getMax().x.toString());
-      searchParams.set("zoom", zoom.toString());
-      searchParams.set("centerX", center.x.toString());
-      searchParams.set("centerY", center.y.toString());
-      setSearchParams(searchParams, { replace: true });
+      // 상태와 쿼리파라미터 모두 업데이트
+      const nextParams = {
+        lowLatitude: bounds.getMin().y.toString(),
+        lowLongitude: bounds.getMin().x.toString(),
+        highLatitude: bounds.getMax().y.toString(),
+        highLongitude: bounds.getMax().x.toString(),
+        zoom: zoom.toString(),
+        centerX: center.x.toString(),
+        centerY: center.y.toString(),
+      };
+      setParams(nextParams);
     };
-    onChange();
 
-    const moveEventListener = naver.maps.Event.addListener(
-      newMap,
-      "idle",
-      onChange
-    );
+    naver.maps.Event.addListener(newMap, "idle", onChange);
 
-    setMap(newMap);
-
-    return () => {
-      naver.maps.Event.removeListener(moveEventListener);
-    };
+    mapRef.current = newMap;
   }, []);
 
+  // 마커 관리도 ref로
   useEffect(() => {
-    if (!map) return;
+    if (!mapRef.current || !restaurants) return;
 
-    // 마커 등록
-    restaurants?.pages[0].contents.forEach(
+    markersRef.current.clear();
+    restaurants.pages[0].contents.forEach(
       ({ id, latitude, longitude, visitedCelebrities }) => {
-        if (markers.has(id)) return;
-
+        if (markersRef.current.has(id)) return;
         const newMarker = new naver.maps.Marker({
           position: new naver.maps.LatLng(latitude, longitude),
-          map,
+          map: mapRef.current!,
           icon: {
-            content: /* HTML */ `<img
+            content: `<img
               src="${visitedCelebrities[0].profileImageUrl}"
               class="relative bottom-[19px] right-[19px] h-[38px] min-h-[38px] w-[38px] min-w-[38px] flex-none rounded-full border-[3px] border-white object-cover"
             />`,
           },
         });
-        setMarkers((prev) => prev.set(id, newMarker));
+        markersRef.current.set(id, newMarker);
       }
     );
-  }, [restaurants, map]);
+  }, [JSON.stringify(restaurants)]);
 
   return <div ref={ref} className={cn} />;
 }
